@@ -1,5 +1,6 @@
 import numpy as np
 from os.path  import join
+import matplotlib.pyplot as plt
 
 from load_data import MnistDataloader
 
@@ -34,7 +35,7 @@ y_train = np.array([one_hot_encode(y, 10) for y in y_train_raw], dtype=int)
 
 d1, d2, d3 = x_test_raw.shape
 x_test = x_test_raw.reshape(d1, d2*d3)
-
+y_test = y_test_raw
 
 
 
@@ -113,4 +114,44 @@ for i in range(epochs):
     print(f"Epoch: {i} | Cost: {cost}")
 
 
-    
+
+
+# Testing
+
+def predict(i, data):
+    hidden_1_z = np.dot(hidden_1_w, np.asmatrix(data[i]).T) + hidden_1_b # (16x100)
+
+    hidden_1_a = sigmoid(hidden_1_z) # (16x100)
+    hidden_2_z = np.dot(hidden_2_w, hidden_1_a) + hidden_2_b # (16x100)
+    hidden_2_a = sigmoid(hidden_2_z) # (16x100)
+    output_z = np.dot(output_w, hidden_2_a) + output_b # (10x100)
+    output = sigmoid(output_z) # (10x100)
+
+    return np.argmax(output)
+
+
+def show_img(i, data):
+    img = data[i].reshape(d2, d3)
+    plt.imshow(img, cmap=plt.cm.gray)
+
+
+data = x_test
+labels = y_test
+# data = x_train
+# labels = y_train_raw
+
+
+c = 0
+for i in range(len(data)):
+    if (p:=predict(i, data)) != (l:=labels[i]):
+        c+=1
+        # print(f"{i} - P: {p} | A: {l}")
+print(f"{1-c/len(data)}")
+
+
+data = x_test
+labels = y_test
+i = 11
+
+print(f"Prediction: {predict(i, data)}\nActual: {labels[i]}")
+show_img(i, data)
