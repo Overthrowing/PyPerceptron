@@ -47,3 +47,6 @@ dist/**
 *.xlf
 package.nls.*.json
 l10n/
+
+# auxillary files
+backup/
