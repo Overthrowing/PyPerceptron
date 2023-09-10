@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pyperceptron"
 version = "0.1.0"
-description = "A Python implementation of a multi-layer perceptron designed to recognize handwritten digits."
+description = "A Python implementation of a neural network (multilayer perceptron)."
 authors = ["Siddharth Radhakrishnan <siddharth.radh@gmail.com>"]
 readme = "README.md"
 
