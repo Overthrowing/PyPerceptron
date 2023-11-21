@@ -28,7 +28,7 @@ from PyPerceptron import Network, layers
 ```
 
 ### Training Data
-See [Eexample](examples/load_data.py) for more details
+See [Example](examples/load_data.py) for more details
 
 ```python
 # Load the MNIST data
